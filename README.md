@@ -1,6 +1,7 @@
 This is a blueprint for a Gradle project using jQAssistant.
 
-== TL;DR
+TL;DR
+-----
 Add this to your build.gradle:
 
         project.ext["jqaversion"] = "1.2.0"
