@@ -1,0 +1,51 @@
+= Place Here Your Coding Rules
+
+Some examples:
+
+[[default]]
+[role=group,includesConcepts="dependency:TransitivePackageDependencies", includesConstraints="project:SomeConstraint(critical)"]
+- <<package:PackageLevel>>
+- <<dependency:TransitivePackageDependencies>>
+
+
+[[project:SomeConstraint]]
+.This is some example constraint (too deep package nesting).
+[source,cypher,role=constraint,requiresConcepts="package:PackageLevel"]
+----
+MATCH
+    (p:Java:Package)
+WHERE
+    p.level > 3
+RETURN
+    distinct p.fqn
+----
+
+[[package:PackageLevel]]
+.Set the level property of a package, e.g. 1 for de, 2 for de.kontext_e and so on.
+[source,cypher,role=concept,requiresConcepts="dependency:Package"]
+----
+MATCH
+    (p:Java:Package)
+WITH
+    SPLIT(p.fqn,".") AS splitted, p
+SET
+    p.level=SIZE(splitted)
+RETURN
+    splitted, SIZE(splitted);
+----
+
+[[dependency:TransitivePackageDependencies]]
+.Add a DEPENDS_ON relationship to parents of a package P from other packages up to the same level of the source package.
+[source,cypher,role=concept,requiresConcepts="package:PackageLevel"]
+----
+MATCH
+    (p:Java:Package)-[:DEPENDS_ON]->(p2:Java:Package),
+    (parent:Java:Package)-[:CONTAINS*]->(p2:Java:Package)
+WHERE
+    p.level <= parent.level
+CREATE UNIQUE
+    (p)-[:DEPENDS_ON]->(parent)
+RETURN
+    p.fqn, parent.fqn;
+----
+
