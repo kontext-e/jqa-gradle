@@ -14,7 +14,6 @@ dependencies {
 }
 
 project.ext["jqaversion"] = "1.2.0"
-project.ext["jqapluginversion"] = "1.2"
 configurations {
     jqaRuntime
 }
@@ -30,8 +29,8 @@ dependencies {
     jqaRuntime("com.buschmais.jqassistant:commandline:${project.jqaversion}")
     jqaRuntime("com.buschmais.jqassistant:neo4jserver:${project.jqaversion}")
 
-    jqaRuntime("com.buschmais.jqassistant.plugin:java:${project.jqapluginversion}")
-    jqaRuntime("com.buschmais.jqassistant.plugin:junit:${project.jqapluginversion}")
+    jqaRuntime("com.buschmais.jqassistant.plugin:java:1.2")
+    jqaRuntime("com.buschmais.jqassistant.plugin:junit:1.2")
 }
 
 task removeJQAReport(type: Delete) {
