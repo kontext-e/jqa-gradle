@@ -6,6 +6,7 @@ Some examples:
 [role=group,includesConcepts="dependency:TransitivePackageDependencies", includesConstraints="project:SomeConstraint(critical)"]
 - <<package:PackageLevel>>
 - <<dependency:TransitivePackageDependencies>>
+- <<project:SomeConstraint>>
 
 
 [[project:SomeConstraint]]
