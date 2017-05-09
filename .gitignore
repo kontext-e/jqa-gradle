@@ -1,0 +1,5 @@
+.gradle/
+.idea/
+build/
+jqassistant/report/
+jqassistant/store/
