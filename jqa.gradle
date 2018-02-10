@@ -36,12 +36,10 @@ task(jqascan, dependsOn: 'jqaclean', type: JavaExec) {
     args 'java:classpath::build/classes/main'
     args 'java:classpath::build/classes/test'
 
-    /* in a multi subprojects project it would be:
     rootProject.subprojects {
         args 'java:classpath::'+it.name+'/build/classes/main'
         args 'java:classpath::'+it.name+'/build/classes/test'
     }
-    */
 
     args '.git'
 }
