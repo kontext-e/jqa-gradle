@@ -3,3 +3,5 @@
 build/
 jqassistant/report/
 jqassistant/store/
+jqassistant/logs
+jqassistant/store_lock
